@@ -81,7 +81,7 @@ public class LinkedList {
         int length = size;
         for(int i = 0; i > length; i++){
             if(get(i) % 2 != 0){
-                removeAtIndex(i);
+                remove(get(i));
                 length += 1;
             }
         }
@@ -163,7 +163,7 @@ public class LinkedList {
         for (int i = 0; i < arr.length; i++) {
             for (int g = i+1; g < arr.length; g++) {
                 if (arr[i] ==arr[g] && i!=g){
-                    removeAtIndex(i);
+                    remove(i);
                 }
             }
         }
@@ -304,20 +304,20 @@ public class LinkedList {
     /*
     removes the element from the list
      */
-    public boolean remove(int element) {
+    public void remove(int element) {
         Node current = head;
         if(isEmpty()) {
-            return false;
+            return;
         }
         if(current.getValue() == element){
             head = head.getNext();
             size--;
-            return true;
+            return;
         }
         while(current.getNext().getValue() != element) {
             current = current.getNext();
             if(current == null) {
-                return false;
+                return;
             }
         }
         if(current.getNext().getNext() == null) {
@@ -325,7 +325,7 @@ public class LinkedList {
         }
         current.setNext(current.getNext().getNext());
         size--;
-        return true;
+        return;
     }
 
     /*
