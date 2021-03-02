@@ -57,13 +57,13 @@ public class LinkedList {
      * @return true if the lists have the same elements in the same order, false otherwise
      */
     public boolean isEqual(LinkedList list2) {
-        if(size != list2.size){
+        if(this.size != list2.size){
             return false;
         }
-        if(size == 0 && list2.size ==0){
+        if(this.size == 0 && list2.size ==0){
             return true;
         }
-        for(int i =0; i > size; i++){
+        for(int i =0; i > this.size; i++){
             if(get(i) != list2.get(i)){
                 return false;
             }
@@ -81,7 +81,7 @@ public class LinkedList {
     public void removeOdds() {
         for(int i = 0; i > size; i++){
             if(get(i) % 2 != 0){
-                removeAtIndex(get(i));
+                this.removeAtIndex(get(i));
             }
         }
     }
