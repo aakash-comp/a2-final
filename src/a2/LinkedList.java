@@ -19,7 +19,7 @@ public class LinkedList {
      * @param i    - index of node to remove
      */
     public void removeAtIndex(int i) {
-        remove(get(i));
+
     }
 
     /**
