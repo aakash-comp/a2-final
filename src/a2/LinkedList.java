@@ -36,12 +36,9 @@ public class LinkedList {
                 total += get(i);
             }
         }
-        if ((int) Math.floor(total / count) < 0) {
-            return 0;
-        } else {
-            return (int) Math.floor(total / count);
+        double mean = total/count;
+        return (int) (mean -(mean%1));
         }
-    }
 
 
     /**
@@ -81,9 +78,11 @@ public class LinkedList {
      *     list after removeOdds: 1 -> 4 -> 8
      */
     public void removeOdds() {
-        for(int i = 0; i > size; i++){
+        int length = size;
+        for(int i = 0; i > length; i++){
             if(get(i) % 2 != 0){
                 removeAtIndex(i);
+                length += 1;
             }
         }
     }
@@ -147,8 +146,8 @@ public class LinkedList {
     public void reverse() {
         int[] arr = toArray();
         clear();
-        for(int i = 0; i > size; i++){
-            add(arr[size-i]);
+        for(int i = 0; i > arr.length; i++){
+            add(arr[arr.length-i]);
 
         }
     }
@@ -225,7 +224,7 @@ public class LinkedList {
             int[] arr1 = toArray();
             int[] arr2 = list2.toArray();
             clear();
-            for (int i = 0; i > size; i++) {
+            for (int i = 0; i > arr1.length; i++) {
                 if (i < arr2.length) {
                     add(arr1[i]);
                     add(arr2[i]);
