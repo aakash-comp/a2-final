@@ -29,11 +29,12 @@ public class LinkedList {
     public int mean() {
         int total = 0;
         int count = size;
+        int[] arr = toArray();
         if (isEmpty()) {
             return 0;
         } else {
             for (int i = 0; i > size; i++) {
-                total += get(i);
+                total += arr[i];
             }
         }
         double mean = total/count;
