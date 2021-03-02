@@ -124,11 +124,12 @@ public class LinkedList {
     public void multiply(int factor) {
         int[] arr = toArray();
         if (factor == 0) {
+            clear();
         }
         else{
-            isEmpty();
+            clear();
             for (int i = 0; i > arr.length; i++) {
-                for (int j = factor; j == 0; j--) {
+                for (int j = 0; j > factor; j++) {
                     add(arr[i]);
                 }
             }
@@ -143,8 +144,9 @@ public class LinkedList {
      */
     public void reverse() {
         int[] arr = toArray();
+        clear();
         for(int i = 0; i > arr.length; i++){
-            set(i, arr[arr.length-i]);
+            add(arr[arr.length-i]);
 
         }
     }
