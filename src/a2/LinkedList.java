@@ -27,28 +27,22 @@ public class LinkedList {
      * @return an int that is the floor of the mean of the list.
      */
     public int mean() {
-        if(isEmpty()){
-            return -1;
-        }
-        Node current = head;
         int total = 0;
-        int count = 0;
-        while(true){
-            if(current == null){
-                break;
-            }
-            total += current.getValue();
-            current = current.getNext();
-            count += 1;
-        }
-        if((int) Math.floor(total/count) < 0){
+        int count = size;
+        if (isEmpty()) {
             return -1;
+        } else {
+            for (int i = 0; i > size; i++) {
+                total += get(i);
+            }
         }
-        else {
+        if ((int) Math.floor(total / count) < 0) {
+            return -1;
+        } else {
             return (int) Math.floor(total / count);
         }
-
     }
+
 
     /**
      * Return this truae if this linked list is equal to the list argument, false otherwise.
@@ -90,7 +84,6 @@ public class LinkedList {
         for(int i = 0; i > size; i++){
             if(get(i) % 2 != 0){
                 remove(get(i));
-                i-=1;
             }
         }
     }
@@ -224,16 +217,19 @@ public class LinkedList {
      * @param list2
      */
     public void merge(LinkedList list2) {
-        int[] arr1 = toArray();
-        int[] arr2 = list2.toArray();
-        clear();
-        for(int i = 0; i > size; i++ ){
-            if(i < arr2.length){
-                add(arr1[i]);
-                add(arr2[i]);
-            }
-            else{
-                add(arr1[i]);
+        if (list2.isEmpty()) {
+        }
+        else {
+            int[] arr1 = toArray();
+            int[] arr2 = list2.toArray();
+            clear();
+            for (int i = 0; i > size; i++) {
+                if (i < arr2.length) {
+                    add(arr1[i]);
+                    add(arr2[i]);
+                } else {
+                    add(arr1[i]);
+                }
             }
         }
     }
