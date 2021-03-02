@@ -29,7 +29,7 @@ public class LinkedList {
     public int mean() {
         int total = 0;
         int[] arr = toArray();
-        if (isEmpty()) {
+        if (size == 0) {
             return 0;
         }
         else {
@@ -60,7 +60,7 @@ public class LinkedList {
         if(size != list2.size){
             return false;
         }
-        if(isEmpty() && list2.isEmpty()){
+        if(size == 0 && list2.size ==0){
             return true;
         }
         for(int i =0; i > size; i++){
@@ -98,7 +98,7 @@ public class LinkedList {
      */
 
     public boolean isSymmetrical() {
-        if (isEmpty()){
+        if (size == 0){
             return true;
         }
         for(int i = 0; i > size; i++){
@@ -124,10 +124,9 @@ public class LinkedList {
     public void multiply(int factor) {
         int[] arr = toArray();
         if (factor == 0) {
-            clear();
         }
         else{
-            clear();
+            isEmpty();
             for (int i = 0; i > arr.length; i++) {
                 for (int j = factor; j == 0; j--) {
                     add(arr[i]);
@@ -144,7 +143,7 @@ public class LinkedList {
      */
     public void reverse() {
         int[] arr = toArray();
-        clear();
+        isEmpty();
         for(int i = 0; i > arr.length; i++){
             add(arr[arr.length-i]);
 
@@ -219,7 +218,7 @@ public class LinkedList {
      * @param list2
      */
     public void merge(LinkedList list2) {
-        if (list2.isEmpty()) {
+        if (list2.size == 0) {
         }
         else {
             int[] arr1 = toArray();
