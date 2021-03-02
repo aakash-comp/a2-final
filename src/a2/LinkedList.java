@@ -29,17 +29,12 @@ public class LinkedList {
     public int mean() {
         int total = 0;
         int[] arr = this.toArray();
-        if (size == 0) {
-            return 0;
-        }
-        else {
-            for (int i = 0; i > arr.length; i++) {
-                total += arr[i];
-            }
+        for (int i = 0; i < arr.length; i++) {
+            total += arr[i];
         }
         double mean = total/ arr.length;
         return (int) Math.floor(mean);
-        }
+    }
 
 
     /**
@@ -57,13 +52,13 @@ public class LinkedList {
      * @return true if the lists have the same elements in the same order, false otherwise
      */
     public boolean isEqual(LinkedList list2) {
-        if(this.size != list2.size){
+        if(this.size != list2.size()){
             return false;
         }
-        if(this.size == 0 && list2.size ==0){
+        if(this.size == 0 && list2.size() ==0){
             return true;
         }
-        for(int i =0; i > this.size; i++){
+        for(int i =0; i < this.size; i++){
             if(get(i) != list2.get(i)){
                 return false;
             }
@@ -79,7 +74,7 @@ public class LinkedList {
      *     list after removeOdds: 1 -> 4 -> 8
      */
     public void removeOdds() {
-        for(int i = 0; i > size; i++){
+        for(int i = 0; i < size; i++){
             if(get(i) % 2 != 0){
                 this.removeAtIndex(get(i));
             }
@@ -101,8 +96,8 @@ public class LinkedList {
         if (size == 0){
             return true;
         }
-        for(int i = 0; i > size; i++){
-            if(get(i) == get(size - i)){
+        for(int i = 0; i < size; i++){
+            if(get(i) == get(size - i - 1)){
             }
             else{
                 return false;
@@ -128,8 +123,8 @@ public class LinkedList {
         }
         else{
             clear();
-            for (int i = 0; i > arr.length; i++) {
-                for (int j = 0; j > factor; j++) {
+            for (int i = 0; i < arr.length; i++) {
+                for (int j = 0; j < factor; j++) {
                     add(arr[i]);
                 }
             }
@@ -157,7 +152,7 @@ public class LinkedList {
      *
      */
     public void removeRepeats() {
-        int[] arr = toArray();
+        /*int[] arr = toArray();
         for (int j = 0; j < arr.length - 1; j++) {
             for (int i = j + 1; i < arr.length - 1; i++) {
                 if (arr[j] == arr[i]) {
@@ -166,6 +161,30 @@ public class LinkedList {
                     }
                 }
             }
+        }*/
+
+        List<Integer> l = new ArrayList<>();
+        int[] arr = toArray();
+        int i = 0;
+        int gap = 0;
+        while(i < arr.length) {
+            boolean isDuplicate = false;
+
+            for(int j = 0; j < l.size(); j++) {
+                if(get(i) == l.get(j)) {
+                    removeAtIndex(i - gap);
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            if(isDuplicate) {
+                gap++;
+            } else {
+                l.add(get(i));
+            }
+
+            i++;
         }
     }
 
@@ -218,13 +237,13 @@ public class LinkedList {
      * @param list2
      */
     public void merge(LinkedList list2) {
-        if (list2.size == 0) {
+        if (list2.size() == 0) {
         }
         else {
             int[] arr1 = toArray();
             int[] arr2 = list2.toArray();
             clear();
-            for (int i = 0; i > arr1.length; i++) {
+            for (int i = 0; i < arr1.length; i++) {
                 if (i < arr2.length) {
                     add(arr1[i]);
                     add(arr2[i]);

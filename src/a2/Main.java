@@ -8,7 +8,6 @@ public class Main {
         list.add(1);
         list.add(2);
         list.add(3);
-        list.removeAtIndex(0);
-        System.out.println(list.toString());
+        System.out.println(list.mean());
     }
 }
