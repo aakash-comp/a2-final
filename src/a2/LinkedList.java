@@ -32,8 +32,11 @@ public class LinkedList {
         for (int i = 0; i < arr.length; i++) {
             total += arr[i];
         }
+        if(arr.length == 0) {
+            return 0;
+        }
         double mean = total/ arr.length;
-        return (int) Math.floor(mean);
+        return (int) Math.round(mean);
     }
 
 
@@ -77,6 +80,7 @@ public class LinkedList {
         for(int i = 0; i < size; i++){
             if(get(i) % 2 != 0){
                 this.removeAtIndex(get(i));
+                i--;
             }
         }
     }
@@ -139,9 +143,9 @@ public class LinkedList {
      */
     public void reverse() {
         int[] arr = toArray();
-        for(int i: arr){
-            remove(i);
-            add(i);
+        clear();
+        for(int i = arr.length-1; i >= 0; i--) {
+            add(arr[i]);
         }
     }
 
@@ -163,28 +167,33 @@ public class LinkedList {
             }
         }*/
 
-        List<Integer> l = new ArrayList<>();
-        int[] arr = toArray();
-        int i = 0;
-        int gap = 0;
-        while(i < arr.length) {
-            boolean isDuplicate = false;
+        List<Integer> temp = new ArrayList<>();
+        List<Integer> arr = new ArrayList<>();
+        int[] a = toArray();
 
-            for(int j = 0; j < l.size(); j++) {
-                if(get(i) == l.get(j)) {
-                    removeAtIndex(i - gap);
+        clear();
+
+        for(int i : a) {
+            arr.add(i);
+        }
+
+        for(int i = 0; i < arr.size(); i++) {
+            boolean isDuplicate = false;
+            for(int j = 0; j < temp.size(); j++) {
+                if(arr.get(i) == temp.get(j)) {
+                    arr.remove(i);
                     isDuplicate = true;
+                    i--;
                     break;
                 }
             }
-
-            if(isDuplicate) {
-                gap++;
-            } else {
-                l.add(get(i));
+            if(!isDuplicate) {
+                temp.add(get(i));
             }
+        }
 
-            i++;
+        for(int i = 0; i < arr.size(); i++) {
+            add(arr.get(i));
         }
     }
 
