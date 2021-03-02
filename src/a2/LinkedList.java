@@ -28,7 +28,7 @@ public class LinkedList {
      */
     public int mean() {
         int total = 0;
-        int[] arr = toArray();
+        int[] arr = this.toArray();
         if (size == 0) {
             return 0;
         }
