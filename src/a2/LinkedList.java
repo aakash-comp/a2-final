@@ -37,7 +37,7 @@ public class LinkedList {
             }
         }
         double mean = total/count;
-        return (int) (mean -(mean%1));
+        return (int) Math.floor(mean);
         }
 
 
@@ -160,15 +160,14 @@ public class LinkedList {
      */
     public void removeRepeats() {
         int[] arr = toArray();
-        clear();
-        Set<Integer> set = new HashSet<Integer>();
-
-        for(int i = 0; i < arr.length; i++){
-            set.add(arr[i]);
-        }
-        Iterator it = set.iterator();
-        while(it.hasNext()){
-            add((int) it.next());
+        for (int j = 0; j < arr.length - 1; j++) {
+            for (int i = j + 1; i < arr.length - 1; i++) {
+                if (arr[j] == arr[i]) {
+                    for (int g = i; g < arr.length - 1; g++) {
+                        arr[g] = arr[g + 1];
+                    }
+                }
+            }
         }
     }
 
