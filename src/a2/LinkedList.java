@@ -160,12 +160,15 @@ public class LinkedList {
      */
     public void removeRepeats() {
         int[] arr = toArray();
-        for (int i = 0; i < arr.length; i++) {
-            for (int g = i+1; g < arr.length; g++) {
-                if (arr[i] ==arr[g] && i!=g){
-                    remove(i);
-                }
-            }
+        clear();
+        Set<Integer> set = new HashSet<Integer>();
+
+        for(int i = 0; i < arr.length; i++){
+            set.add(arr[i]);
+        }
+        Iterator it = set.iterator();
+        while(it.hasNext()){
+            add((int) it.next());
         }
     }
 
@@ -304,20 +307,20 @@ public class LinkedList {
     /*
     removes the element from the list
      */
-    public void remove(int element) {
+    public boolean remove(int element) {
         Node current = head;
         if(isEmpty()) {
-            return;
+            return false;
         }
         if(current.getValue() == element){
             head = head.getNext();
             size--;
-            return;
+            return true;
         }
         while(current.getNext().getValue() != element) {
             current = current.getNext();
             if(current == null) {
-                return;
+                return false;
             }
         }
         if(current.getNext().getNext() == null) {
@@ -325,7 +328,7 @@ public class LinkedList {
         }
         current.setNext(current.getNext().getNext());
         size--;
-        return;
+        return true;
     }
 
     /*
