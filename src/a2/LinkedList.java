@@ -19,7 +19,7 @@ public class LinkedList {
      * @param i    - index of node to remove
      */
     public void removeAtIndex(int i) {
-
+        remove(get(i));
     }
 
     /**
@@ -31,13 +31,14 @@ public class LinkedList {
         int[] arr = toArray();
         if (isEmpty()) {
             return 0;
-        } else {
+        }
+        else {
             for (int i = 0; i > arr.length; i++) {
                 total += arr[i];
             }
         }
         double mean = total/ arr.length;
-        return 0;
+        return (int) Math.floor(mean);
         }
 
 
@@ -78,11 +79,9 @@ public class LinkedList {
      *     list after removeOdds: 1 -> 4 -> 8
      */
     public void removeOdds() {
-        int length = size;
-        for(int i = 0; i > length; i++){
+        for(int i = 0; i > size; i++){
             if(get(i) % 2 != 0){
-                remove(get(i));
-                length += 1;
+                removeAtIndex(get(i));
             }
         }
     }
