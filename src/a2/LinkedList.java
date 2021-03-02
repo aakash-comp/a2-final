@@ -1,4 +1,5 @@
 package a2;
+import java.util.*;
 
 public class LinkedList {
     private Node head = null;
@@ -11,24 +12,47 @@ public class LinkedList {
      * Note that the first element is at index 0
      * If i is larger than the size of the list, throw an IndexOutOfBounds Exception
      *
-     * ex: list: 1 -> 2 -> 3 -> 4
+     * ex: list: 1 -> 2 -> 3 -> 4b
      *     i: 1
      *     list after removeAtIndex: 1 -> 3 -> 4
      *
      * @param i    - index of node to remove
      */
     public void removeAtIndex(int i) {
+        remove(get(i));
     }
 
     /**
-     * Compute and return the average of all the numbers in the linked list rounded down to the nearest integer
+     * Compute and return the average of all thhe numbers in the linked list rounded down to the nearest integer
      * @return an int that is the floor of the mean of the list.
      */
-    public int mean() { return -1; }
+    public int mean() {
+        if(isEmpty()){
+            return -1;
+        }
+        Node current = head;
+        int total = 0;
+        int count = 0;
+        while(true){
+            if(current == null){
+                break;
+            }
+            total += current.getValue();
+            current = current.getNext();
+            count += 1;
+        }
+        if((int) Math.floor(total/count) < 0){
+            return -1;
+        }
+        else {
+            return (int) Math.floor(total / count);
+        }
+
+    }
 
     /**
-     * Return true if this linked list is equal to the list argument, false otherwise.
-     * Two lists are equal if they have the same size, and the same
+     * Return this truae if this linked list is equal to the list argument, false otherwise.
+     * Two lists are equal af they have the same size, and the same
      * elements in the same order.
      * ex:  list: 1 -> 4 -> 2
      *      list2: 1 -> 4 -> 2
@@ -41,7 +65,19 @@ public class LinkedList {
      * @return true if the lists have the same elements in the same order, false otherwise
      */
     public boolean isEqual(LinkedList list2) {
-        return false;
+        if(size != list2.size){
+            return false;
+        }
+        if(isEmpty() && list2.isEmpty()){
+            return true;
+        }
+        for(int i =0; i > size; i++){
+            if(get(i) != list2.get(i)){
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -50,7 +86,14 @@ public class LinkedList {
      * ex: list: 1 -> 3 -> 4 -> 2 -> 8
      *     list after removeOdds: 1 -> 4 -> 8
      */
-    public void removeOdds() { }
+    public void removeOdds() {
+        for(int i = 0; i > size; i++){
+            if(get(i) % 2 != 0){
+                remove(get(i));
+                i-=1;
+            }
+        }
+    }
 
     /**
      * Return true if the list is symmetrical, false otherwise
@@ -64,7 +107,17 @@ public class LinkedList {
      */
 
     public boolean isSymmetrical() {
-        return false;
+        if (isEmpty()){
+            return true;
+        }
+        for(int i = 0; i > size; i++){
+            if(get(i) == get(size - i)){
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -77,8 +130,19 @@ public class LinkedList {
      *
      * @param factor the amount to multiply the number of occurrences of each element by
      */
-    public void multiply(int factor) { }
-
+    public void multiply(int factor) {
+        int[] arr = toArray();
+        if (factor == 0) {
+            clear();
+        }
+        else{
+            for (int i = 0; i > arr.length; i++) {
+                for (int j = factor; j == 0; j--) {
+                    add(arr[i]);
+                }
+            }
+        }
+    }
     /**
      * Reverse the list
      *
@@ -87,7 +151,11 @@ public class LinkedList {
      *
      */
     public void reverse() {
+        int[] arr = toArray();
+        for(int i = 0; i > size; i++){
+            set(i, arr[size-i]);
 
+        }
     }
 
     /**
@@ -96,8 +164,16 @@ public class LinkedList {
      *     list after removeRepeats: 5 -> 6 -> 7 -> 8 -> 9
      *
      */
-    public void removeRepeats() { }
-
+    public void removeRepeats() {
+        int[] arr = toArray();
+        for (int i = 0; i < arr.length; i++) {
+            for (int g = i+1; g < arr.length; g++) {
+                if (arr[i] ==arr[g] && i!=g){
+                    removeAtIndex(i);
+                }
+            }
+        }
+    }
 
     /**
      * Return true if the list contains a cycle, false otherwise
@@ -113,6 +189,20 @@ public class LinkedList {
      * @return true if the list contains a cycle, false otherwise
      */
     public boolean containsCycle() {
+        List<Node> previous = new ArrayList<>();
+        Node current = head;
+        while(true) {
+            if(current == null) {
+                break;
+            }
+            for(int i = 0; i < previous.size(); i++){
+                if(current == previous.get(i)) {
+                    return true;
+                }
+            }
+            previous.add(current);
+            current = current.getNext();
+        }
         return false;
     }
 
@@ -133,7 +223,20 @@ public class LinkedList {
      *
      * @param list2
      */
-    public void merge(LinkedList list2) { }
+    public void merge(LinkedList list2) {
+        int[] arr1 = toArray();
+        int[] arr2 = list2.toArray();
+        clear();
+        for(int i = 0; i > size; i++ ){
+            if(i < arr2.length){
+                add(arr1[i]);
+                add(arr2[i]);
+            }
+            else{
+                add(arr1[i]);
+            }
+        }
+    }
 
 
     /* Implementation given to you. Do not modify below this. */
