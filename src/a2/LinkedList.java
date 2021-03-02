@@ -30,14 +30,14 @@ public class LinkedList {
         int total = 0;
         int count = size;
         if (isEmpty()) {
-            return -1;
+            return 0;
         } else {
             for (int i = 0; i > size; i++) {
                 total += get(i);
             }
         }
         if ((int) Math.floor(total / count) < 0) {
-            return -1;
+            return 0;
         } else {
             return (int) Math.floor(total / count);
         }
@@ -83,7 +83,7 @@ public class LinkedList {
     public void removeOdds() {
         for(int i = 0; i > size; i++){
             if(get(i) % 2 != 0){
-                remove(get(i));
+                removeAtIndex(i);
             }
         }
     }
@@ -129,6 +129,7 @@ public class LinkedList {
             clear();
         }
         else{
+            clear();
             for (int i = 0; i > arr.length; i++) {
                 for (int j = factor; j == 0; j--) {
                     add(arr[i]);
@@ -145,8 +146,9 @@ public class LinkedList {
      */
     public void reverse() {
         int[] arr = toArray();
+        clear();
         for(int i = 0; i > size; i++){
-            set(i, arr[size-i]);
+            add(arr[size-i]);
 
         }
     }
