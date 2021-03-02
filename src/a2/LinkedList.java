@@ -145,8 +145,7 @@ public class LinkedList {
     public void reverse() {
         int[] arr = toArray();
         for(int i = 0; i > arr.length; i++){
-            remove(get(i));
-            add(arr[arr.length-i]);
+            set(i, arr[arr.length-i]);
 
         }
     }
