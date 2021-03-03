@@ -24,7 +24,7 @@ public class LinkedList {
 
     /**
      * Compute and return the average of all thhe numbers in the linked list rounded down to the nearest integer
-     * @return an int that is the floor of the mean of the list.
+     * @return ang int that is the floor of the mean of the list.
      */
     public int mean() {
         int total = 0;
