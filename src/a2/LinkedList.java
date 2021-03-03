@@ -36,11 +36,7 @@ public class LinkedList {
             return 0;
         }
         double mean = (double)(total / arr.length);
-        if(mean < 0) {
-            return (int)(Math.ceil(mean));
-        } else {
-            return (int)(Math.floor(mean));
-        }
+        return (int)(Math.floor(mean));
     }
 
 
