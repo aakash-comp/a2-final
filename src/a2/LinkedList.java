@@ -35,7 +35,7 @@ public class LinkedList {
         if(arr.length == 0) {
             return 0;
         }
-        double mean = (double)(total / arr.length);
+        double mean = ((double)total) / arr.length;
         return (int)(Math.floor(mean));
     }
 
