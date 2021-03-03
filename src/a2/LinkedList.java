@@ -35,8 +35,12 @@ public class LinkedList {
         if(arr.length == 0) {
             return 0;
         }
-        double mean = total/ arr.length;
-        return (int) mean;
+        double mean = total / arr.length;
+        if(mean < 0) {
+            return (int)(Math.ceil(mean));
+        } else {
+            return (int)(Math.floor(mean));
+        }
     }
 
 
@@ -77,13 +81,9 @@ public class LinkedList {
      *     list after removeOdds: 1 -> 4 -> 8
      */
     public void removeOdds() {
-        int i = 0;
+        int i = 1;
         while(i < size){
-            if(get(i) % 2 != 0){
-                this.removeAtIndex(i);
-                i--;
-            }
-
+            removeAtIndex(i);
             i++;
         }
     }
