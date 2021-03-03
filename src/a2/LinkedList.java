@@ -36,7 +36,7 @@ public class LinkedList {
             return 0;
         }
         double mean = total/ arr.length;
-        return (int) Math.round(mean);
+        return (int) mean;
     }
 
 
@@ -77,11 +77,14 @@ public class LinkedList {
      *     list after removeOdds: 1 -> 4 -> 8
      */
     public void removeOdds() {
-        for(int i = 0; i < size; i++){
+        int i = 0;
+        while(i < size){
             if(get(i) % 2 != 0){
-                this.removeAtIndex(get(i));
+                this.removeAtIndex(i);
                 i--;
             }
+
+            i++;
         }
     }
 
@@ -171,6 +174,7 @@ public class LinkedList {
         List<Integer> arr = new ArrayList<>();
         int[] a = toArray();
 
+        int s = size;
         clear();
 
         for(int i : a) {
@@ -188,7 +192,7 @@ public class LinkedList {
                 }
             }
             if(!isDuplicate) {
-                temp.add(get(i));
+                temp.add(arr.get(i));
             }
         }
 
